@@ -1,0 +1,52 @@
+# Pytest Command-Line Commands
+
+## Basic Commands:
+pytest                      # Run all tests in current and subdirectories
+pytest tests/test_file.py   # Run tests in a specific file
+pytest tests/               # Run all tests in a specific directory
+pytest -k "keyword"         # Run tests matching the keyword
+pytest tests/test_file.py::test_name  # Run a specific test by name
+
+## Output and Verbosity:
+pytest -v                   # Verbose output (shows each test)
+pytest -q                   # Quiet mode (minimal output)
+pytest -s                   # Disable capturing, show print statements
+pytest --tb=short           # Short traceback format
+pytest --tb=line            # Single-line traceback format
+pytest --disable-warnings   # Suppress warnings
+
+## Running Tests by Marker:
+pytest -m markername        # Run tests marked with specific marker
+pytest -m "not slow"        # Run tests excluding those marked as slow
+
+## Timing and Profiling:
+pytest --durations=10       # List 10 slowest tests
+pytest --timeout=10         # Set test timeout (needs pytest-timeout plugin)
+
+## Debugging and Reporting:
+pytest --pdb                # Debug on first failure
+pytest --trace              # Debug at test start
+pytest --junitxml=report.xml  # Generate JUnit XML test report
+pytest --html=report.html   # Generate HTML report (pytest-html plugin required)
+
+## Parallel Testing:
+pytest -n auto              # Parallel tests (needs pytest-xdist)
+pytest -n 4                 # Parallel tests with 4 cores/processes
+
+## Code Coverage:
+pytest --cov=my_package     # Coverage report (pytest-cov plugin required)
+pytest --cov-report term-missing --cov=my_package  # Missing coverage details
+pytest --cov-report html --cov=my_package  # HTML coverage report
+
+## Cache and Test Management:
+pytest --last-failed        # Run only tests that failed previously
+pytest --failed-first       # Run failed tests first
+pytest --collect-only       # Collect and display tests without running
+pytest --ff                 # Alias for --failed-first
+
+## Environment and Config Files:
+pytest -c path/to/pytest.ini   # Use specific pytest configuration file
+pytest --setup-show            # Show fixture setup and teardown details
+
+## Example Combined Usage:
+pytest tests/ -v -s --cov=my_package --durations=5
